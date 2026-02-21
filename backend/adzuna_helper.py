@@ -1,15 +1,31 @@
 import requests
+import os
 
-APP_ID = "123132" #Your app id here
-APP_KEY = "1313hh213123" #Your api key from adzuna
+def get_secret(key):
+    backend_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(backend_dir)
+    secret_path = os.path.join(project_root, "Secrets", "adzuna.properties")
+    try:
+        with open(secret_path, "r") as f:
+            for line in f:
+                if line.startswith(key):
+                    return line.split("=")[1].strip().strip('"').strip("'")
+    except FileNotFoundError:
+        print(f"Error: {secret_path} not found.")
+    return None
+
+
+APP_ID = get_secret("APP_ID") #Your app id here
+APP_KEY = get_secret("APP_KEY") #Your api key from adzuna
 COUNTRY = "in"  # Use 'us', 'uk', 'in', etc.
 
 
 def search_adzuna_jobs(job_titles, location="Remote"):
     all_jobs = []
-
+    print(APP_ID)
+    print(job_titles)
     # We search for the first few titles suggested by the AI
-    for title in job_titles[:2]:
+    for title in job_titles:
         url = f"https://api.adzuna.com/v1/api/jobs/{COUNTRY}/search/1"
         params = {
             "app_id": APP_ID,
@@ -35,3 +51,4 @@ def search_adzuna_jobs(job_titles, location="Remote"):
             print(f"Adzuna Error: {e}")
 
     return all_jobs
+

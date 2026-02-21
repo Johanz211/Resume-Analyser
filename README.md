@@ -5,7 +5,7 @@ Python 3.10+
 
 Ollama installed and running with Llama3 (ollama run llama3)
 
-An Adzuna API Key
+An Adzuna API Key - Change it in the adzuna.properties
 
 # 2. Installation
 
@@ -36,3 +36,5 @@ Extract: The backend sends the raw text to Llama3 (localhost:11434) to identify 
 Search: Those keywords are passed to the Adzuna API to find matching vacancies.
     
 Result: View a curated list of job links directly in your browser.
+
+### Note: No edge cases has been handled, e.x: if LLM doesn't provide the data in the right format, or it throws an error, it just shows Internal Server Error in the UI 
