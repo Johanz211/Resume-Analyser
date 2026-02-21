@@ -1,7 +1,7 @@
 import requests
 
-APP_ID = "7123ade9"
-APP_KEY = "0405bc3beaaf22d9d0fc0de39fb48517"
+APP_ID = "123132" #Your app id here
+APP_KEY = "1313hh213123" #Your api key from adzuna
 COUNTRY = "in"  # Use 'us', 'uk', 'in', etc.
 
 
